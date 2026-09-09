@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P1-Practica pagina web del mes patrio</title>
+    <style>
+        :root {
+            --verde: #006847;
+            --blanco: #ffffff;
+            --rojo: #ce1126;
+            --dorado: #d4af37;
+            --gris-fondo: #f4f4f9;
+            --texto: #333333;
+            --negro: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-fondo);
+            color: var(--dorado);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--verde);
+            color: var(--blanco);
+            text-align: center;
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            background-color: var(--negro);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--blanco);
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        nav button:hover, nav button.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-bottom: 4px solid var(--dorado);
+        }
+
+        /* Contenedor Principal */
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sección Inicio */
+        .hero-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .hero-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 4px solid var(--dorado);
+        }
+
+        .hero-section h2 {
+            color: var(--verde);
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: black; /*cambiar a white */
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--verde);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--rojo);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 1.5rem;
+            border-left: 6px solid var(--rojo);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item .date {
+            font-weight: bold;
+            color: var(--verde);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--negro);
+            color: var(--blanco);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        .mi-header {
+            background-image: url("Mural.png"); /* Ruta de tu imagen */
+            background-size: cover; /* Hace que la imagen cubra todo el espacio */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 300px; /* Define una altura fija o mínima para el header */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="mi-header">
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="openTab(event, 'inicio')">Inicio</button>
+        <button class="nav-btn" onclick="openTab(event, 'personajes')">Personajes Ilustres</button>
+        <button class="nav-btn" onclick="openTab(event, 'mitos')">Datos Curiosos y Mitos</button>
+        <button class="nav-btn" onclick="openTab(event, 'fechas')">Fechas Importantes</button>
+    </nav>
+
+    <main>
+        <section id="inicio" class="tab-content active" style="text-align: center;">
+                <img src="Miguel.png">
+                <h2>¿Por qué celebramos a septiembre como nuestro mes patrio?</h2>
+                <p>
+                    En México, el mes de septiembre es reconocido como el mes patrio porque concentra las principales fechas históricas relacionadas con el inicio y la consolidación de la Independencia de México. Durante semanas, el país entero se viste de verde, blanco y rojo, mientras plazas públicas, escuelas y hogares conmemoran con orgullo los acontecimientos que marcaron la libertad y soberanía de la nación.
+                </p>
+            </div>
+        </section>
+
+        <section id="personajes" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--verde);">Personajes Ilustres</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Miguel Hidalgo y Costilla</h3>
+                    <p>Considerado el "Padre de la Patria", inició la gesta independentista la madrugada del 16 de septiembre de 1810 con el famoso Grito de Dolores.</p>
+                    <img src="Miguel H.png" width="250" height="300">
+                </div>
+                <div class="card">
+                    <h3>Josefa Ortiz de Domínguez</h3>
+                    <p>Pieza clave en la conspiración de Querétaro; al ser descubiertos, logró alertar a los insurgentes para dar inicio a la lucha armada.</p>
+                    <img src="Josefa.png" width="250" height="300">
+                </div>
+                <div class="card">
+                    <h3>José María Morelos y Pavón</h3>
+                    <p>Líder militar y político que asumió la causa tras la muerte de Hidalgo; organizó el Congreso de Anáhuac y redactó los Sentimientos de la Nación.</p>
+                    <img src="Jose.png" width="250" height="300">
+                </div>
+                <div class="card">
+                    <h3>Ignacio Allende</h3>
+                    <p>Militar criollo que lideró estratégicamente las primeras fases del movimiento insurgente junto a Hidalgo.</p>
+                    <img src="Ignacio.png" width="250" height="300">
+                </div>
+                <div class="card">
+                    <h3>Vicente Guerrero</h3>
+                    <p>Protagonista del consumado final del movimiento; pactó el Abrazo de Acatempan para unificar las fuerzas realistas e insurgentes en el Ejército Trigarante.</p>
+                    <img src= "Vicente.png" width="250" height="300">
+                </div>
+                <div class="card">
+                    <h3>Juan Aldama</h3>
+                    <p>Militar criollo que lideraro estratégicamente las primeras fases del movimiento insurgente junto a Hidalgo.</p>
+                    <img src= "Juan.png" width="250" height="300">
+                </div>
+            </div>
+        </section>
+
+        <section id="mitos" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--verde);">Datos Curiosos y Mitos</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>El Grito no ocurrió a la medianoche del 15</h3>
+                    <p>Miguel Hidalgo convocó al pueblo la madrugada del 16 de septiembre (alrededor de las 5:00 a.m.). La tradición de dar el "Grito" la noche del 15 fue popularizada formalmente durante el porfiriato para hacerla coincidir con el cumpleaños de Porfirio Díaz.</p>
+                </div>
+                <div class="card">
+                    <h3>La campana original viaja desde Guanajuato</h3>
+                    <p>La campana que tocó Hidalgo en la parroquia de Dolores se trasladó en 1896 al Palacio Nacional en la Ciudad de México, donde el Presidente en turno la hace sonar cada 15 de septiembre.</p>
+                </div>
+                <div class="card">
+                    <h3>El origen del Chile en Nogada</h3>
+                    <p>Este platillo representativo de las fiestas patrias fue elaborado por las monjas agustinas del convento de Santa Mónica, en Puebla, para celebrar el santo de Agustín de Iturbide en agosto de 1821, incorporando los colores verde, blanco y rojo del Ejército Trigarante.</p>
+                </div>
+                <div class="card">
+                    <h3>La Independencia duró 11 años</h3>
+                    <p>Aunque el inicio se celebra con gran euforia el 16 de septiembre, el proceso completo culminó hasta el 27 de septiembre de 1821 con la entrada triunfal del Ejército Trigarante a la Ciudad de México.</p>
+                </div>
+                <div class="card">
+                    <h3>El Pípila quemó solo la Alhóndiga</h3>
+                    <p>Funciona más como una figura simbólica del esfuerzo del pueblo minero que como la hazaña verificable de un solo hombre cargando una losa de piedra.</p>
+                </div>
+                <div class="card">
+                    <h3>Los Niños Héroes eran niños y lucharon solos</h3>
+                    <p>Eran adolescentes y jóvenes (de 13 a 20 años) que combatieron junto a más de 800 soldados mexicanos, y el salto de Juan Escutia con la bandera es un mito construido tiempo después.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="fechas" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--verde);">Fechas Importantes</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">13 de septiembre de 1847</div>
+                    <h3>Defensa del Castillo de Chapultepec</h3>
+                    <p>Ocurrió la batalla durante la intervención estadounidense en México, donde los cadetes del Colegio Militar (Niños Héroes) combatieron en el Castillo de Chapultepec.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">14 de septiembre de 1813</div>
+                    <h3>Promulgación de los Sentimientos de la Nación</h3>
+                    <p>José María Morelos y Pavón leyó este documento histórico en el Congreso de Chilpancingo, sentando las bases ideológicas y republicanas de la nueva nación.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">15 de septiembre de 1810</div>
+                    <h3>Grito de Dolores (Noche de la Conmemoración)</h3>
+                    <p>El Presidente de la República y gobernadores del país rinden homenaje desde los balcones oficiales a los héroes de la patria con la ceremonia del "Grito".</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">16 de septiembre de 1810</div>
+                    <h3>Aniversario del Inicio de la Independencia</h3>
+                    <p>Fecha oficial del levantamiento en armas liderado por Miguel Hidalgo en Dolores, Guanajuato. Se realiza el tradicional desfile militar en el Zócalo capitalino.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">27 de septiembre de 1821</div>
+                    <h3>Consumación de la Independencia de México</h3>
+                    <p>El Ejército Trigarante, encabezado por Agustín de Iturbide y Vicente Guerrero, entró triunfalmente a la Ciudad de México, marcando el fin oficial de la dominación española.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">28 de septiembre de 1821</div>
+                    <h3>Firma del Acta de Independencia</h3>
+                    <p>Se instaló la Junta Provisional Gubernativa y se redactó el Acta de Independencia del Imperio Mexicano.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">30 de septiembre de 1765</div>
+                    <h3>Nacimiento de José María Morelos y Pavón</h3>
+                    <p>Conmemoración del natalicio del "Siervo de la Nación" en Valladolid (hoy Morelia, Michoacán).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Marco Andrés Bonilla Murillo 5to J 24308051280809</p>
+    </footer>
+
+    <script>
+        // Función para cambiar de pestaña en la página web
+        function openTab(evt, tabName) {
+            var i, tabcontent, navbtns;
+            
+            // Ocultar todas las pestañas
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Quitar clase "active" de todos los botones
+            navbtns = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < navbtns.length; i++) {
+                navbtns[i].classList.remove("active");
+            }
+
+            // Mostrar la pestaña actual y activar el botón
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
